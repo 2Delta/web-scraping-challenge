@@ -31,6 +31,7 @@ def scrape():
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
     featured_image_url = url + soup.find('a', class_='showimg fancybox-thumbs')['href']
+    featured_image_title = soup.find('h1', class_="media_feature_title").text
     browser.quit()
 
 
@@ -78,7 +79,8 @@ def scrape():
     scraped_data = {
         'news_title': news_title,
         'news_paragraph': news_p,
-        'featured_img': featured_image_url,
+        'featured_img_url': featured_image_url,
+        'featured_img_title': featured_image_title,
         'mars_table': mars_html_table,
         'hemisphere_img': hemisphere_image_urls,
         }
